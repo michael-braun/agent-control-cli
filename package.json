@@ -7,6 +7,10 @@
     "agent-control": "./dist/cli.js",
     "agentctl": "./dist/cli.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michael-braun/agent-control-cli.git"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
