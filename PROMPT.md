@@ -49,3 +49,5 @@ Immer, wenn du einen Agenten anzeigst (list, interactive install/uninstall), zei
 Ein Command ist ein nach außen per CLI angebotene Kommando unter der Anwendung <anwendungs-name> <command-name>, während ein Tool eine intern (per interaktivem Modus) angebotene Funktion ist.
 
 Baue das Ganze Projekt bitte möglich schön (mehrere Dateien, Typescript) auf. Am besten auch mit utility-Funktionen (falls notwendig). Alle Commands sollten in eigenen Dateien stehen. Wenn du utils clustern kannst (bspw. filesystem, config, etc.) dann packe sie in einzelne Dateien in einem utils Ordner. Dupliziere für “gleiche Ansichten“ keine Code, sondern lagere ihn in eigene Dateien aus. Tools und Commands liegen in eigenen Ordnern.
+
+Füge Unit-Tests zu der gesamten Codebase hinzu. Nutze als Test-Framework vitest.
