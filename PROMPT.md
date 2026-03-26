@@ -248,23 +248,20 @@ Reihenfolge der Einträge (jeweils mit Icon):
 
 ### 5.3 Agenten-Management (Tool: Agents)
 
-Zentrales Tool für alle Agenten-Operationen. Ersetzt die bisherigen Einzeltools (Browse, Manage, Install, Uninstall).
+Zentrales Tool für alle Agenten-Operationen. Nutzt `@inquirer/checkbox` für direkte Selektion/Deselektion.
 
 #### Übersicht
 
-- Zeigt **alle** Agents aus allen Repositories in einer einheitlichen Liste.
+- Zeigt **alle** Agents aus allen Repositories in einer einheitlichen Checkbox-Liste.
 - Installierte Agents sind **vorausgewählt** (Checkbox aktiv).
-- **Leertaste** togglet Aktivierung/Deaktivierung eines Agenten.
-- **Enter** auf einem Agenten öffnet die Detail-Ansicht (`info`-Tool).
-- Zusätzliche Menüpunkte am Ende der Liste:
-  - ✅ **Anwenden** – führt Install/Uninstall für alle Änderungen durch.
-  - ← **Abbrechen** – verwirft Änderungen, zurück zum Hauptmenü.
+- **Leertaste** togglet Aktivierung/Deaktivierung eines Agenten direkt in der Liste.
+- **Enter** bestätigt die Auswahl und führt die Änderungen sofort durch.
 
-#### Ablauf "Anwenden"
+#### Ablauf nach Bestätigung (Enter)
 
 - Neu aktivierte Agents werden installiert.
 - Abgewählte (zuvor installierte) Agents werden deinstalliert.
-- Wenn keine Änderungen vorliegen, wird nichts ausgeführt.
+- Wenn keine Änderungen vorliegen, wird eine entsprechende Meldung angezeigt.
 
 #### Agent-Info (`info`)
 
@@ -274,17 +271,14 @@ Zentrales Tool für alle Agenten-Operationen. Ersetzt die bisherigen Einzeltools
 
 ### 5.4 Skills-Management (Tool: Skills)
 
-Analog zum Agents-Tool. Zentrales Tool für alle Skill-Operationen.
+Analog zum Agents-Tool. Nutzt `@inquirer/checkbox` für direkte Selektion/Deselektion.
 
 #### Übersicht
 
-- Zeigt **alle** Skills aus allen Repositories in einer einheitlichen Liste.
+- Zeigt **alle** Skills aus allen Repositories in einer einheitlichen Checkbox-Liste.
 - Installierte Skills sind **vorausgewählt** (Checkbox aktiv).
 - **Leertaste** togglet Aktivierung/Deaktivierung eines Skills.
-- **Enter** auf einem Skill öffnet die Detail-Ansicht.
-- Zusätzliche Menüpunkte am Ende der Liste:
-  - ✅ **Anwenden** – führt Install/Uninstall für alle Änderungen durch.
-  - ← **Abbrechen** – verwirft Änderungen, zurück zum Hauptmenü.
+- **Enter** bestätigt die Auswahl und führt die Änderungen sofort durch.
 
 ### 5.5 Wartung (Tools)
 
