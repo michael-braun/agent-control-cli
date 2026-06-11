@@ -5,12 +5,16 @@ import { skillsTool } from './skills-tool.js';
 import { update } from '../commands/update.js';
 import { cleanup } from '../commands/cleanup.js';
 import { doctor } from '../commands/doctor.js';
+import { checkForUpdate } from '../utils/index.js';
 
 export async function interactive(): Promise<void> {
   const { select } = await import('@inquirer/prompts');
+
+  const updateMsg = await checkForUpdate();
   
   while (true) {
     console.log('\n');
+    if (updateMsg) console.log(`  ⬆️  ${updateMsg}\n`);
     
     const action = await select({
       message: 'What would you like to do?',

@@ -20,6 +20,7 @@ import {
   showSkillInfo,
   listAvailableSteerings
 } from './commands/index.js';
+import { checkForUpdate } from './utils/index.js';
 
 const program = new Command();
 
@@ -119,7 +120,19 @@ program
   .description('Start interactive mode')
   .action(interactive);
 
-program.parseAsync().catch((err) => {
+const isInteractive = !process.argv.slice(2).length || process.argv[2] === 'interactive';
+const updateCheck = isInteractive ? null : checkForUpdate();
+
+(async () => {
+  if (updateCheck) {
+    const updateMsg = await updateCheck;
+    if (updateMsg) {
+      const border = '#'.repeat(updateMsg.length + 12);
+      console.log(`\n  ${border}\n  ###   ${updateMsg}   ###\n  ${border}\n`);
+    }
+  }
+  await program.parseAsync();
+})().catch((err) => {
   console.error(`Error: ${err.message}`);
   process.exit(1);
 });

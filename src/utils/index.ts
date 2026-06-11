@@ -5,3 +5,4 @@ export { getRepoPath, getRepoMetaPath, getAgentDir, getSkillDir } from './paths.
 export { hashPath } from './hash.js';
 export { isGitRepository, hasUncommittedChanges } from './git.js';
 export { selectAgentInteractive } from './interactive.js';
+export { checkForUpdate } from './update-check.js';
