@@ -22,6 +22,7 @@
 - Geklonte Repositories: `~/.agent-control/repos/`
 - Installierte Agenten: `~/.agent-control/agents/`
 - Installierte Skills: `~/.agent-control/skills/`
+- Logs: `~/.agent-control/logs/`
 - Kiro-Agent-Symlinks: `~/.kiro/agents/`
 - Kiro-Skill-Symlinks: `~/.kiro/skills/`
 
@@ -48,6 +49,7 @@
   - Hinter dem Repository-Namen: **grüner Punkt** = Git-Support, **oranger Punkt** = kein Git.
 - Git-Support-Status wird grün (aktiv) oder orange (deaktiviert) hervorgehoben.
 - Schöne Icons (mit Space getrennt) vor Menüeinträgen.
+- Alle `select`-Prompts verwenden `loop: false` (kein Umbruch am Listenende).
 
 ---
 
@@ -135,6 +137,7 @@
 - Bricht mit Fehlermeldung ab, wenn uncommittete Änderungen in einem Git-Repository vorliegen.
 - Führt anschließend die Repository-Analyse und den `cleanup`-Command aus.
 - Speichert den Zeitpunkt des letzten Updates in den Meta-Daten.
+- Schreibt Logs nach `~/.agent-control/logs/auto-update.log` (Timestamps bei Start, pro Repo und Ende).
 
 #### `cleanup`
 
@@ -148,6 +151,7 @@
   - Fehlerhafte Symlinks
   - Fehlerhafte oder inkonsistente Config-Dateien
   - Agenten, die nicht mehr im Repository enthalten, aber noch lokal installiert sind
+  - Duplizierte Auto-Update CronJobs (reduziert auf einen einzigen)
 - Jedes Problem wird in einer eigenen Funktion/Datei analysiert (unter `utils/doctor/`).
 
 ---
