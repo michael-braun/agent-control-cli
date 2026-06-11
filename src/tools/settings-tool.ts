@@ -8,6 +8,7 @@ export async function settingsTool(): Promise<void> {
 
     const action = await select({
       message: `⚙️  Settings — Auto-Update: ${enabled ? '\x1b[32menabled\x1b[0m' : '\x1b[33mdisabled\x1b[0m'}`,
+      loop: false,
       choices: [
         { name: enabled ? '⏹  Disable auto-update' : '▶️  Enable auto-update (every 6h)', value: 'toggle' },
         { name: '← Back', value: 'back' }

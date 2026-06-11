@@ -20,6 +20,7 @@ export async function uninstallAgentTool(): Promise<void> {
   
   const selected = await select({
     message: 'Select an agent to uninstall:',
+    loop: false,
     choices
   });
   

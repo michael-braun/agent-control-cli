@@ -7,24 +7,19 @@ describe('cli bootstrap', () => {
   });
 
   it('registers commands and parses argv', async () => {
-    const parse = vi.fn();
     const parseAsync = vi.fn(() => Promise.resolve());
-    const action = vi.fn(() => commandApi);
-    const description = vi.fn(() => commandApi);
-    const command = vi.fn(() => commandApi);
-
-    const commandApi = {
-      name: vi.fn(() => commandApi),
-      description,
-      version: vi.fn(() => commandApi),
-      action,
-      command,
-      parse,
-      parseAsync
-    };
+    const command = vi.fn();
 
     vi.doMock('commander', () => ({
-      Command: vi.fn(() => commandApi)
+      Command: class {
+        name() { return this; }
+        description() { return this; }
+        version() { return this; }
+        action() { return this; }
+        command() { command(); return this; }
+        parse() { return this; }
+        parseAsync() { return parseAsync(); }
+      }
     }));
 
     vi.doMock('../src/commands/index.js', () => ({

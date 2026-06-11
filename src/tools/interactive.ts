@@ -19,12 +19,13 @@ export async function interactive(): Promise<void> {
     
     const action = await select({
       message: 'What would you like to do?',
+      loop: false,
       choices: [
         { name: '🔄  Update repositories', value: 'update' },
         { name: '📚  Manage repositories', value: 'list-repos' },
         { name: '🤖  Agents', value: 'agents' },
         { name: '📝  Skills', value: 'skills' },
-        { name: '⚙️   Settings', value: 'settings' },
+        { name: '⚙️  Settings', value: 'settings' },
         { name: '🩺  Doctor (diagnose & fix)', value: 'doctor' },
         { name: '🧹  Cleanup symlinks', value: 'cleanup' },
         { name: '👋  Exit', value: 'exit' }

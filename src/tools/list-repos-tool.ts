@@ -36,6 +36,7 @@ export async function listReposTool(): Promise<void> {
     
     const selected = await select({
       message: 'Select a repository:',
+      loop: false,
       choices,
       default: 'back'
     });
@@ -96,6 +97,7 @@ async function showRepoInfo(repo: string): Promise<boolean> {
   
   const action = await select({
     message: canDelete ? 'Select an action:' : 'Cannot remove: agents still installed',
+    loop: false,
     choices,
     default: 'back'
   });

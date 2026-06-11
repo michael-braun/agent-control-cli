@@ -48,6 +48,7 @@ export async function showAgentInfoTool(repo: string, agentId: string): Promise<
   
   const action = await select({
     message: 'Select an action:',
+    loop: false,
     choices,
     default: 'back'
   });

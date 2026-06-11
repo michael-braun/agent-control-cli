@@ -38,6 +38,7 @@ export async function selectAgentInteractive(message: string, showInstalled: boo
   
   const selected = await select({
     message,
+    loop: false,
     choices: allChoices
   });
   

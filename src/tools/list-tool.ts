@@ -23,6 +23,7 @@ export async function listInstalledAgentsTool(): Promise<void> {
   
   const selected = await select({
     message: 'Select an agent to view details:',
+    loop: false,
     choices
   });
   
