@@ -7,5 +7,7 @@ export const CONFIG_PATH = join(BASE_DIR, 'config.json');
 export const REPOS_DIR = join(BASE_DIR, 'repos');
 export const AGENTS_DIR = join(BASE_DIR, 'agents');
 export const SKILLS_DIR = join(BASE_DIR, 'skills');
+export const LOGS_DIR = join(BASE_DIR, 'logs');
 export const KIRO_AGENTS_DIR = join(HOME, '.kiro', 'agents');
 export const KIRO_SKILLS_DIR = join(HOME, '.kiro', 'skills');
+export const CRON_COMMENT = 'agent-control-auto-update';

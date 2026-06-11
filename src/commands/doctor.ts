@@ -5,6 +5,7 @@ import { checkConfig } from '../utils/doctor/check-config.js';
 import { checkRepositories } from '../utils/doctor/check-repositories.js';
 import { checkOrphanedSymlinks } from '../utils/doctor/check-symlinks.js';
 import { checkAgents } from '../utils/doctor/check-agents.js';
+import { checkCron } from '../utils/doctor/check-cron.js';
 
 export async function doctor(): Promise<void> {
   console.log('\n🔍 Running diagnostics...\n');
@@ -37,6 +38,11 @@ export async function doctor(): Promise<void> {
   // Check agents
   const agentResult = checkAgents(config);
   totalIssues += agentResult.issues;
+  
+  // Check cron
+  const cronResult = checkCron();
+  totalIssues += cronResult.issues;
+  allFixes.push(...cronResult.fixes);
   
   // Fix issues
   if (totalIssues > 0) {

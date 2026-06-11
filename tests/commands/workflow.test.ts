@@ -56,7 +56,9 @@ describe('commands workflow', () => {
   it('update exits on uncommitted git changes', async () => {
     vi.doMock('fs', () => ({
       readdirSync: vi.fn(() => ['repo']),
-      lstatSync: vi.fn(() => ({ isDirectory: () => true, isSymbolicLink: () => false }))
+      lstatSync: vi.fn(() => ({ isDirectory: () => true, isSymbolicLink: () => false })),
+      mkdirSync: vi.fn(),
+      appendFileSync: vi.fn()
     }));
     vi.doMock('child_process', () => ({ execSync: vi.fn() }));
     vi.doMock('../../src/utils/index.js', () => ({
@@ -65,6 +67,7 @@ describe('commands workflow', () => {
       isGitRepository: vi.fn(() => true),
       hasUncommittedChanges: vi.fn(() => true)
     }));
+    vi.doMock('../../src/utils/log.js', () => ({ writeUpdateLog: vi.fn() }));
     vi.doMock('../../src/analyzer.js', () => ({ analyzeRepository: vi.fn() }));
     vi.doMock('../../src/commands/cleanup.js', () => ({ cleanup: vi.fn() }));
 

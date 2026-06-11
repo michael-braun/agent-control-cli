@@ -18,7 +18,10 @@ import {
   listInstalledSkills,
   listAvailableSkills,
   showSkillInfo,
-  listAvailableSteerings
+  listAvailableSteerings,
+  settings,
+  enableAutoUpdateCommand,
+  disableAutoUpdateCommand
 } from './commands/index.js';
 import { checkForUpdate } from './utils/index.js';
 
@@ -119,6 +122,25 @@ program
   .command('interactive')
   .description('Start interactive mode')
   .action(interactive);
+
+const settingsCmd = program
+  .command('settings')
+  .description('Manage settings');
+
+settingsCmd
+  .command('show')
+  .description('Show current settings')
+  .action(settings);
+
+settingsCmd
+  .command('auto-update-on')
+  .description('Enable auto-update cronjob')
+  .action(enableAutoUpdateCommand);
+
+settingsCmd
+  .command('auto-update-off')
+  .description('Disable auto-update cronjob')
+  .action(disableAutoUpdateCommand);
 
 const isInteractive = !process.argv.slice(2).length || process.argv[2] === 'interactive';
 const updateCheck = isInteractive ? null : checkForUpdate();

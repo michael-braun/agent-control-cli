@@ -32,7 +32,15 @@
 | **Command** | Per CLI angebotenes Kommando: `agent-control <command-name> [args]` |
 | **Tool**    | Intern im interaktiven Modus angebotene Funktion |
 
-### 1.4 UX-Konventionen (interaktiver Modus)
+### 1.4 Update-Hinweis
+
+- Beim Start der CLI wird geprüft, ob eine neuere Version auf npm verfügbar ist.
+- Dafür wird die npm-Registry abgefragt (Timeout: 3 Sekunden).
+- Ist eine neuere Version vorhanden, wird ein Hinweis mit aktueller und neuer Version sowie dem Install-Befehl angezeigt.
+- Fehler bei der Prüfung werden stillschweigend ignoriert (kein Abbruch, keine Fehlermeldung).
+- Der Hinweis erscheint sowohl im CLI-Command-Modus als auch im interaktiven Modus.
+
+### 1.5 UX-Konventionen (interaktiver Modus)
 
 - Interaktive Listen mit Aktionen haben standardmäßig **Back** ausgewählt.
 - Die Back-Option hat immer einen **Zurück-Pfeil** (←) vor dem Text.
@@ -144,6 +152,28 @@
 
 ---
 
+### 2.6 Settings
+
+#### `settings show`
+
+- Zeigt den aktuellen Status des Auto-Update CronJobs (enabled/disabled).
+
+#### `settings auto-update-on`
+
+- Registriert einen CronJob für den aktuellen Benutzer, der alle 6 Stunden `agentctl update` ausführt.
+- Schreibt Ausgabe nach `~/.agent-control/logs/auto-update.log`.
+- Fehler, wenn bereits aktiviert.
+
+#### `settings auto-update-off`
+
+- Entfernt den Auto-Update CronJob.
+
+#### Automatisches Entfernen bei Deinstallation
+
+- Beim `npm uninstall -g` des Packages wird der CronJob automatisch entfernt (`preuninstall`-Script).
+
+---
+
 ## 3 Repository-Analyse
 
 Wird ausgeführt bei: `add-repo`, `update`.
@@ -235,8 +265,9 @@ Reihenfolge der Einträge (jeweils mit Icon):
 2. 📚 Manage Repositories
 3. 🤖 Agents
 4. 📝 Skills
-5. 🩺 Doctor
-6. 🧹 Cleanup
+5. ⚙️ Settings
+6. 🩺 Doctor
+7. 🧹 Cleanup
 
 ### 5.2 Repository-Management (Tool)
 
@@ -295,7 +326,13 @@ Analog zum Agents-Tool. Nutzt `@inquirer/checkbox` für direkte Selektion/Desele
 - **Leertaste** togglet Aktivierung/Deaktivierung eines Skills.
 - **Enter** bestätigt die Auswahl und führt die Änderungen sofort durch.
 
-### 5.5 Wartung (Tools)
+### 5.5 Settings (Tool)
+
+- Zeigt den aktuellen Status des Auto-Update CronJobs.
+- Toggle-Option: Auto-Update aktivieren/deaktivieren.
+- Standardmäßig ist **Back** ausgewählt.
+
+### 5.6 Wartung (Tools)
 
 #### Doctor
 
