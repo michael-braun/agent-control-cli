@@ -45,10 +45,22 @@ export interface RepoMeta {
   lastUpdated?: string;
 }
 
+export interface KnowledgeBaseResource {
+  type: 'knowledgeBase';
+  source: string;
+  name: string;
+  indexType?: 'fast' | 'best';
+  include?: string[];
+  exclude?: string[];
+  autoUpdate?: boolean;
+}
+
+export type AgentResource = string | KnowledgeBaseResource;
+
 export interface AgentJson {
   id?: string;
   name?: string;
   description?: string;
   prompt?: string;
-  resources?: string[];
+  resources?: AgentResource[];
 }
