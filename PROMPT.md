@@ -198,9 +198,10 @@ Wird ausgeführt bei: `add-repo`, `update`.
 
 #### 3.1.2 Resources-Analyse
 
-- Gleiche Analyse wie beim `prompt`-Feld für alle Pfade im `resources`-Array.
+- Gleiche Analyse wie beim `prompt`-Feld für alle **String-Einträge** im `resources`-Array.
 - URLs mit Protokoll `skill://` werden entsprechend verarbeitet.
 - Dateien müssen mit **absoluten Pfaden** referenziert werden.
+- **Objekt-Einträge** (z.B. `{ "type": "knowledgeBase", ... }`) werden bei der Analyse übersprungen – sie enthalten keine zu analysierenden Dateien.
 
 #### 3.1.3 `skill://`-Referenzen
 
@@ -239,6 +240,7 @@ Wird ausgeführt bei: `add-repo`, `update`.
    - Pfade zu bekannten Dateien werden angepasst: Prefix `./agent-control_<agent-id>/` (kein doppeltes `./`).
    - Angepasste Pfade beginnen immer mit `./`.
    - Das Property `id` wird aus der Datei entfernt.
+   - **Objekt-Einträge** im `resources`-Array (z.B. `knowledgeBase`) werden unverändert durchgereicht, wobei `file://`-Pfade im `source`-Feld auf absolute Pfade aufgelöst werden.
 3. Alle weiteren Dateien werden nach `~/.agent-control/agents/<agent-id>/files` kopiert.
 4. Symlinks werden in `~/.kiro/agents/` erstellt:
    - JSON: `agent-control_<agent-id>.json`

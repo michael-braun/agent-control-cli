@@ -108,6 +108,15 @@ export function installAgentFiles(agent: Agent, repoName: string): { jsonPath: s
     const config = readConfig();
 
     jsonData.resources = jsonData.resources.map(resource => {
+      if (typeof resource !== 'string') {
+        // Resolve source path in knowledgeBase objects to absolute path
+        if (resource.type === 'knowledgeBase' && resource.source?.startsWith('file://')) {
+          const sourcePath = resolveFileUrlReference(jsonDir, resource.source);
+          return { ...resource, source: `file://${sourcePath}` };
+        }
+        return resource;
+      }
+
       if (resource.startsWith('skill://')) {
         return resolveSkillReference(resource, repoName, meta, config, installedSkillIds, installedSkillSymlinks);
       }

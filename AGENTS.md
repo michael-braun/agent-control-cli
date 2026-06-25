@@ -28,7 +28,7 @@ Three logical layers, each with a clear boundary:
 
 ## Key Data Flows
 
-**Install flow:** `installAgent(repo, agentId)` → `loadRepoMeta(repo)` → `installAgentFiles(agent, repo)` in `symlinks.ts` → copies files to `~/.agent-control/agents/<id>/`, rewrites `file://` and `skill://` paths in the agent's JSON, then creates two symlinks in `~/.kiro/agents/`: `agent-control_<id>.json` and `agent-control_<id>/` (files dir). Symlink paths are tracked in `~/.agent-control/config.json` under `symlinks`.
+**Install flow:** `installAgent(repo, agentId)` → `loadRepoMeta(repo)` → `installAgentFiles(agent, repo)` in `symlinks.ts` → copies files to `~/.agent-control/agents/<id>/`, rewrites `file://` and `skill://` paths in the agent's JSON, then creates two symlinks in `~/.kiro/agents/`: `agent-control_<id>.json` and `agent-control_<id>/` (files dir). Symlink paths are tracked in `~/.agent-control/config.json` under `symlinks`. Object entries in `resources` (e.g. `knowledgeBase`) are passed through with their `source` path resolved to an absolute path.
 
 **Skill auto-install:** When an agent JSON references `skill://skills/<name>/SKILL.md`, `symlinks.ts::resolveSkillReference` auto-installs the skill from the same repo before writing the agent JSON. Installed skill symlinks land in `~/.kiro/skills/agent-control_<skillId>/`.
 
@@ -66,7 +66,7 @@ it('…', async () => {
 
 ## Key Files
 
-- `src/types.ts` — all shared interfaces (`Agent`, `Skill`, `Config`, `RepoMeta`, `AgentJson`)
+- `src/types.ts` — all shared interfaces (`Agent`, `Skill`, `Config`, `RepoMeta`, `AgentJson`, `KnowledgeBaseResource`)
 - `src/constants.ts` — all file-system paths derived from `~`
 - `src/symlinks.ts` — install/uninstall logic, path rewriting, rollback
 - `src/analyzer.ts` — repo scanning and meta persistence
